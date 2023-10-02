@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Go HTMX Skeleton</title>
+    <script src="./node_modules/htmx.org/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bulma/css/bulma.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="block tabs is-large">
+            <ul>
+                <li class="is-active"><a>First Tab</a></li>
+                <li><a>Second Tab</a></li>
+                <li><a>Third Tab</a></li>
+            </ul>
+        </div>
+        <section class="section">
+            <div id="replaceMe" class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        EXAMPLE
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                        <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                        <br>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a hx-get="/get-example" hx-target="#replaceMe" hx-swap="outerHTML" class="card-footer-item">Click to get message</a>
+                </footer>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
