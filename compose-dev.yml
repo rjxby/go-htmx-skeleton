@@ -1,0 +1,24 @@
+# compose file for local development
+# starts backend on 8080
+version: "3.8"
+
+services:
+  go-htmx-skeleton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rjxby/go-htmx-skeleton:dev
+    container_name: "go-htmx-skeleton-dev"
+    hostname: "go-htmx-skeleton-dev"
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - .:/app

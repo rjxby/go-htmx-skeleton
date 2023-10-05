@@ -2,7 +2,9 @@ package main
 
 import (
 	"bytes"
+	"embed"
 	"io"
+	"io/fs"
 	"net/http"
 	"text/template"
 
@@ -12,12 +14,25 @@ import (
 	"github.com/rjxby/go-htmx-skeleton/backend/app/templates"
 )
 
+//go:embed app
+var embededFiles embed.FS
+
+func getFileSystem() http.FileSystem {
+	fsys, err := fs.Sub(embededFiles, "app/public")
+	if err != nil {
+		panic(err)
+	}
+
+	return http.FS(fsys)
+}
+
 func main() {
 	e := echo.New()
 
 	e.Use(middleware.Logger())
 
-	e.Static("/", "../frontend")
+	assetHandler := http.FileServer(getFileSystem())
+	e.GET("/*", echo.WrapHandler(assetHandler))
 
 	e.GET("/get-example", exampleAppWithHtmx)
 
